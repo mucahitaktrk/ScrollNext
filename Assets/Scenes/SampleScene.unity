@@ -228,7 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speedX: 0
   _speedZ: 6.5
-  _angle: 60
+  _gravity: -9.81
   _finishTransform: {fileID: 0}
   _helicoperObject: {fileID: 0}
 --- !u!54 &58945228
@@ -273,7 +273,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.15
+  m_Radius: 0.5
   m_SlopeLimit: 0
   m_StepOffset: 0
   m_SkinWidth: 0.0001

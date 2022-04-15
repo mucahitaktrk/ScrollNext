@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
     private float _moveX;
     [SerializeField] private float _speedX;
     [SerializeField] private float _speedZ;
-
+    [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private Transform _finishTransform;
     private CharacterController _characterController;
     private Animator _playerAnimator;
@@ -43,6 +43,7 @@ public class PlayerScript : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, vec, 5 * Time.deltaTime);
             }
         }
+
     }
 
     private void FixedUpdate()
@@ -83,11 +84,19 @@ public class PlayerScript : MonoBehaviour
             {
                 _moveX = 0;
             }
-
             float speedX = -_moveX * _speedX * Time.deltaTime;
             float a = Mathf.Clamp(transform.position.x, -4, 4);
             transform.position = new Vector3(a, transform.position.y, transform.position.z);
-            transform.Translate(-speedX, 0, -_speedZ * Time.deltaTime);
+
+            _characterController.Move(new Vector3(speedX, _gravity * Time.fixedDeltaTime, _speedZ * Time.fixedDeltaTime));
+            if (transform.position.x >= 4f)
+            {
+                transform.position = new Vector3(4f, transform.position.y, transform.position.z);
+            }
+            else if (transform.position.x <= -4f)
+            {
+                transform.position = new Vector3(-4f, transform.position.y, transform.position.z);
+            }
         }
     }
 
