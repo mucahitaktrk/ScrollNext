@@ -9,7 +9,6 @@ public class PlayerScript : MonoBehaviour
     private float _moveX;
     [SerializeField] private float _speedX;
     [SerializeField] private float _speedZ;
-    [SerializeField] private float _angle;
 
     [SerializeField] private Transform _finishTransform;
     private CharacterController _characterController;
@@ -89,19 +88,6 @@ public class PlayerScript : MonoBehaviour
             float a = Mathf.Clamp(transform.position.x, -4, 4);
             transform.position = new Vector3(a, transform.position.y, transform.position.z);
             transform.Translate(-speedX, 0, -_speedZ * Time.deltaTime);
-
-            if (_moveX < 0)
-            {
-                //transform.DORotate(Vector3.up * _angle, 0.05f).SetEase(Ease.Linear);
-            }
-            else if (_moveX > 0)
-            {
-                //transform.DORotate(Vector3.up * -_angle, 0.05f).SetEase(Ease.Linear);
-            }
-            else
-            {
-                //transform.DORotate(Vector3.zero, 0.2f).SetEase(Ease.Linear);
-            }
         }
     }
 
